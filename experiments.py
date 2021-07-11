@@ -89,7 +89,7 @@ test_df["excerpt_preprocessed"] = preprocess(test_df)
 
 # ridge = Ridge(fit_intercept = True, normalize = False)
 
-my_model = RandomForestClassifier()
+my_model = Ridge(fit_intercept = True, normalize = False)
 
 X = train_df["excerpt_preprocessed"]
 y = train_df['target']
