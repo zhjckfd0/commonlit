@@ -48,7 +48,6 @@ console = Console(theme=custom_theme)
 train_df = pd.read_csv("F:/spyderProjects/CommonLit/CommonLit/train.csv")
 test_df = pd.read_csv("F:/spyderProjects/CommonLit/CommonLit/test.csv")
 
-
 # ====== Preprocessing function ======
 def preprocess(data):
     excerpt_processed = []
@@ -74,18 +73,16 @@ def preprocess(data):
 
     return excerpt_processed
 
-
 def training(model, X_train, y_train, X_test, y_test):
-    # model = make_pipeline(
-    #     TfidfVectorizer(binary=True, ngram_range=(1,1)),
-    #     model,
-    # )
+    model = make_pipeline(
+        TfidfVectorizer(binary=True, ngram_range=(1,1)),
+        model,
+    )
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
 
     mse_result = mse(y_test, y_pred)
     print("MSE: ", mse_result)
-
 
 train_df["excerpt_preprocessed"] = preprocess(train_df)
 test_df["excerpt_preprocessed"] = preprocess(test_df)
