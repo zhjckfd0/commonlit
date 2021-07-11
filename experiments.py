@@ -83,8 +83,8 @@ def training(model, X_train, y_train, X_test, y_test):
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
 
-    mse = mse(y_test, y_pred)
-    print("MSE: ", mse)
+    mse_result = mse(y_test, y_pred)
+    print("MSE: ", mse_result)
 
 
 train_df["excerpt_preprocessed"] = preprocess(train_df)
