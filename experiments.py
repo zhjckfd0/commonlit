@@ -74,6 +74,7 @@ def preprocess(data):
     return excerpt_processed
 
 def training(model, X_train, y_train, X_test, y_test):
+
     model = make_pipeline(
         TfidfVectorizer(binary=True, ngram_range=(1,1)),
         model,
