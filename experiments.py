@@ -34,8 +34,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import Ridge
 from sklearn.metrics import mean_squared_error as mse
 
-nltk.download('stopwords')
-nltk.download('wordnet')
+# nltk.download('stopwords')
+# nltk.download('wordnet')
 
 custom_theme = Theme({
     "info": "italic bold cyan",
@@ -83,8 +83,8 @@ def training(model, X_train, y_train, X_test, y_test):
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
 
-    MSE = mse(y_test, y_pred)
-    print("MSE: ", MSE)
+    mse = mse(y_test, y_pred)
+    print("MSE: ", mse)
 
 
 train_df["excerpt_preprocessed"] = preprocess(train_df)
