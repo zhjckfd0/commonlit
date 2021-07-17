@@ -48,7 +48,7 @@ def seed_everything(seed):
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = True
 
- seed_everything(SEED)
+seed_everything(SEED)
 
 # Data
 
@@ -134,20 +134,20 @@ def predict(df, model):
 
  # Calculate predictions of each fold and average them
 
- fold_predictions = []
+fold_predictions = []
 for path in glob.glob(BASELINE_DIR + '/*.ckpt'):
-     model = MeanPoolingModel(MODEL_DIR)
-     model.load_state_dict(torch.load(path))
-     fold = int(re.match(r'.*_f_?(\d)_.*', path).group(1))
-     print(f'*** fold {fold} ***')
-     y_pred = predict(test, model)
-     fold_predictions.append(y_pred)
+    model = MeanPoolingModel(MODEL_DIR)
+    model.load_state_dict(torch.load(path))
+    fold = int(re.match(r'.*_f_?(\d)_.*', path).group(1))
+    print(f'*** fold {fold} ***')
+    y_pred = predict(test, model)
+    fold_predictions.append(y_pred)
 
-     # Free memory
-     del model
-     gc.collect()
+    # Free memory
+    del model
+    gc.collect()
 
- predictions = np.mean(fold_predictions, axis=0)
+predictions = np.mean(fold_predictions, axis=0)
 
 submission['target'] = predictions
 submission.to_csv('submission.csv', index=False)
