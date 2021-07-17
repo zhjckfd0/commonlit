@@ -1,4 +1,4 @@
- Imports
+# Imports
 
 import os
 import random
@@ -38,16 +38,15 @@ TOKENIZER = AutoTokenizer.from_pretrained(MODEL_DIR)
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 BATCH_SIZE = 8
 
- # Utility functions
+# Utility functions
 
- def seed_everything(seed):
-     random.seed(seed)
-     np.random.seed(seed)
-     torch.manual_seed(seed)
-     torch.cuda.manual_seed_all(seed)
-     torch.backends.cudnn.deterministic = True
-     torch.backends.cudnn.benchmark = True
-
+def seed_everything(seed):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = True
 
  seed_everything(SEED)
 
@@ -57,9 +56,9 @@ submission = pd.read_csv(os.path.join(INPUT_DIR, 'sample_submission.csv'))
 test = pd.read_csv(os.path.join(INPUT_DIR, 'test.csv'))
 test.head()
 
- # Dataset
+# Dataset
 
- class CLRPDataset(Dataset):
+class CLRPDataset(Dataset):
      def __init__(self, texts, tokenizer):
          self.texts = texts
          self.tokenizer = tokenizer
@@ -79,9 +78,9 @@ test.head()
          )
          return encode
 
- # Model
+# Model
 
- class MeanPoolingModel(nn.Module):
+class MeanPoolingModel(nn.Module):
 
      def __init__(self, model_name):
          super().__init__()
@@ -112,8 +111,7 @@ test.head()
          else:
              return preds
 
-
- def predict(df, model):
+def predict(df, model):
      ds = CLRPDataset(df.excerpt.tolist(), TOKENIZER)
      dl = DataLoader(
          ds,
@@ -134,11 +132,10 @@ test.head()
 
      return predictions
 
-
  # Calculate predictions of each fold and average them
 
  fold_predictions = []
- for path in glob.glob(BASELINE_DIR + '/*.ckpt'):
+for path in glob.glob(BASELINE_DIR + '/*.ckpt'):
      model = MeanPoolingModel(MODEL_DIR)
      model.load_state_dict(torch.load(path))
      fold = int(re.match(r'.*_f_?(\d)_.*', path).group(1))
