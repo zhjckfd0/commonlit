@@ -88,27 +88,20 @@ def training(model, X_train, y_train, X_test, y_test):
 train_df["excerpt_preprocessed"] = preprocess(train_df)
 test_df["excerpt_preprocessed"] = preprocess(test_df)
 
-# ridge = Ridge(fit_intercept = True, normalize = False)
-
 my_model = Ridge(fit_intercept = True, normalize = False)
 
-X = train_df["excerpt_preprocessed"]
-y = train_df['target']
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
-
-training(model=my_model, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test)
-
-# model = make_pipeline(
-#         TfidfVectorizer(binary=True),
-#         ridge,
-#     )
-
-my_model.fit(X, y)
-test_pred = my_model.predict(test_df["excerpt_preprocessed"])
-
-predictions = pd.DataFrame()
-predictions['id'] = test_df['id']
-predictions['target'] = test_pred
-predictions.to_csv("F:\pycharm_projects\CommonLit\submission.csv", index=False)
-predictions
+# X = train_df["excerpt_preprocessed"]
+# y = train_df['target']
+#
+# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+#
+# training(model=my_model, X_train=X_train, y_train=y_train, X_test=X_test, y_test=y_test)
+#
+# my_model.fit(X, y)
+# test_pred = my_model.predict(test_df["excerpt_preprocessed"])
+#
+# predictions = pd.DataFrame()
+# predictions['id'] = test_df['id']
+# predictions['target'] = test_pred
+# predictions.to_csv("F:\pycharm_projects\CommonLit\submission.csv", index=False)
+# predictions
