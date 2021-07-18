@@ -30,9 +30,9 @@ SEED = 42
 HIDDEN_SIZE = 1024
 MAX_LEN = 300
 
-INPUT_DIR = '../input/commonlitreadabilityprize'
+INPUT_DIR = 'F:\pycharm_projects\CommonLit'
 BASELINE_DIR = '../input/commonlit-readability-models'
-MODEL_DIR = '../input/roberta-transformers-pytorch/roberta-large'
+MODEL_DIR = "F:\pycharm_projects\CommonLit\models\\roberta-transformers-pytorch\\roberta-large"
 
 TOKENIZER = AutoTokenizer.from_pretrained(MODEL_DIR)
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -150,5 +150,5 @@ for path in glob.glob(BASELINE_DIR + '/*.ckpt'):
 predictions = np.mean(fold_predictions, axis=0)
 
 submission['target'] = predictions
-submission.to_csv('submission.csv', index=False)
+submission.to_csv('submission111.csv', index=False)
 submission.head()
