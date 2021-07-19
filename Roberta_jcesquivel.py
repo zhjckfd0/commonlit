@@ -30,9 +30,9 @@ SEED = 42
 HIDDEN_SIZE = 1024
 MAX_LEN = 300
 
-INPUT_DIR = 'F:\pycharm_projects\CommonLit'
+INPUT_DIR = 'D:\pycharm_projects\CommonLit'
 BASELINE_DIR = '../input/commonlit-readability-models'
-MODEL_DIR = "F:\pycharm_projects\CommonLit\models\\roberta-transformers-pytorch\\roberta-large"
+MODEL_DIR = "D:\pycharm_projects\CommonLit\models\roberta-transformers-pytorch\roberta-large"
 
 TOKENIZER = AutoTokenizer.from_pretrained(MODEL_DIR)
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
